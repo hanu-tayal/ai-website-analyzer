@@ -1,0 +1,361 @@
+[
+  {
+    "timestamp": 1758425983.226041,
+    "action": "browser_started",
+    "details": "Smart browser automation started"
+  },
+  {
+    "timestamp": 1758425992.1541133,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [
+        "a[href*=\"article\"]",
+        ".article a",
+        "a[href*=\"post\"]"
+      ],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7999999999999999,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426015.7989993,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/forms/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426029.0204325,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426064.0877569,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426099.138744,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426134.1769524,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426169.226663,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426204.260811,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426239.3366194,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426274.390773,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426309.4471133,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": true
+    }
+  },
+  {
+    "timestamp": 1758426344.4895155,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426379.5478754,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426414.603216,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426449.646715,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426484.6968513,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426519.7507021,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426554.8370893,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426589.9055748,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426624.9451916,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426659.9896066,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426695.0286996,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426730.1045303,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426765.193116,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  },
+  {
+    "timestamp": 1758426800.236918,
+    "action": "smart_page_analysis",
+    "url": "https://httpbin.org/post",
+    "analysis": {
+      "page_type": "article",
+      "next_action": "click",
+      "target_elements": [],
+      "form_data": {},
+      "reasoning": "Article page detected - looking for related content",
+      "confidence": 0.7,
+      "continue": false
+    }
+  }
+]

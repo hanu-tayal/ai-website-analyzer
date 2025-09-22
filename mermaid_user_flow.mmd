@@ -1,0 +1,6 @@
+graph TD
+    A[User visits website] --> B{Is user logged in?}
+    B -->|No| C[Registration/Login page]
+    B -->|Yes| D[User Dashboard]
+    C --> E[Authentication]
+    E --> D
