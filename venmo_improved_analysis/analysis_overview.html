@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Overview - Venmo Clone Website Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .analysis-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-card .label {
+            margin-top: 10px;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            border-bottom: 3px solid #4facfe;
+            padding-bottom: 10px;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .file-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid #4facfe;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .file-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .file-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .file-card .file-name {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            word-break: break-all;
+            color: #495057;
+        }
+
+        .file-card .description {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .file-card .key-insights {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .file-card .key-insights h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .file-card .key-insights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .file-card .key-insights li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .file-card .key-insights li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .category-ai { border-left-color: #e91e63; }
+        .category-analysis { border-left-color: #4caf50; }
+        .category-flow { border-left-color: #ff9800; }
+        .category-dashboard { border-left-color: #9c27b0; }
+
+        .workflow-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .workflow-section h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .workflow-step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .workflow-step .step-number {
+            background: #4facfe;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+
+        .workflow-step h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .quick-access {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+        }
+
+        .quick-access h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .quick-access a {
+            display: block;
+            color: #4facfe;
+            text-decoration: none;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            transition: color 0.3s ease;
+        }
+
+        .quick-access a:hover {
+            color: #2196f3;
+        }
+
+        .quick-access a:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .quick-access {
+                position: static;
+                margin-bottom: 30px;
+            }
+
+            .files-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Venmo Clone Website Analysis</h1>
+            <div class="subtitle">Comprehensive AI-Powered Analysis Results</div>
+            <div style="margin-top: 20px; font-size: 1rem; opacity: 0.8;">
+                Generated: September 23, 2025 | AI-Powered by Claude Code SDK
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Quick Access Panel -->
+            <div class="quick-access">
+                <h4>🚀 Quick Access</h4>
+                <a href="interactive_analysis_dashboard.html">📊 Interactive Dashboard</a>
+                <a href="ai_analysis_localhost:3000_20250923_153045.json">🧠 AI Analysis JSON</a>
+                <a href="ai_recommendations_localhost:3000_20250923_153045.md">💡 Recommendations</a>
+                <a href="user_stories_localhost:3000_20250923_153045.md">📝 User Stories</a>
+                <a href="inefficiency_dashboard_20250923_153221.html">⚡ Inefficiency Dashboard</a>
+            </div>
+
+            <!-- Analysis Statistics -->
+            <div class="analysis-stats">
+                <div class="stat-card">
+                    <span class="number">18</span>
+                    <span class="label">Analysis Files</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">7</span>
+                    <span class="label">AI Recommendations</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">7</span>
+                    <span class="label">User Stories</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">6</span>
+                    <span class="label">Key Features</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">4</span>
+                    <span class="label">User Types</span>
+                </div>
+            </div>
+
+            <!-- Analysis Workflow -->
+            <div class="workflow-section">
+                <h3>🔄 Analysis Workflow - How Files Connect</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h4>🤖 AI Analysis</h4>
+                        <p>Claude SDK analyzes website and generates core insights</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h4>📊 Basic Analysis</h4>
+                        <p>Technical crawling results and feature mapping</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h4>👥 User Journeys</h4>
+                        <p>Multi-persona journey mapping and emotional analysis</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <h4>📈 Flow Visualization</h4>
+                        <p>Mermaid diagrams and conversion funnel analysis</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <h4>⚡ Inefficiency Detection</h4>
+                        <p>Problem identification and dashboard creation</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">6</div>
+                        <h4>💡 Actionable Results</h4>
+                        <p>Recommendations and user stories for development</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Analysis Files -->
+            <div class="section">
+                <h2>🧠 AI-Powered Core Analysis</h2>
+                <div class="files-grid">
+                    <div class="file-card category-ai">
+                        <h3>🎯 Interactive Analysis Dashboard</h3>
+                        <div class="file-name">interactive_analysis_dashboard.html</div>
+                        <div class="description">
+                            <strong>🌟 START HERE!</strong> Beautiful, interactive web dashboard that visualizes all AI analysis results in a user-friendly format. Replaces the hard-to-read JSON file with visual charts, tabs, and interactive elements.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>5 interactive tabs with different analysis views</li>
+                                <li>Visual representation of website purpose and user types</li>
+                                <li>Color-coded recommendations with impact scoring</li>
+                                <li>User stories with business value calculations</li>
+                                <li>Collapsible raw JSON data for technical users</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="interactive_analysis_dashboard.html" class="btn btn-primary">🚀 Open Dashboard</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-ai">
+                        <h3>🤖 AI Analysis Data</h3>
+                        <div class="file-name">ai_analysis_localhost:3000_20250923_153045.json</div>
+                        <div class="description">
+                            Complete AI-powered analysis including website purpose detection, user insights, intelligent user stories, and feature analysis. This is the core data that powers the interactive dashboard.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Contains:</h4>
+                            <ul>
+                                <li>Marketplace platform identification</li>
+                                <li>4 user types: buyers, sellers, service providers, community</li>
+                                <li>6 key features: search, messaging, maps, video, forms, filtering</li>
+                                <li>Pain points and success metrics analysis</li>
+                                <li>7 intelligent user stories with business value</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="ai_analysis_localhost:3000_20250923_153045.json" class="btn btn-secondary">📄 View JSON</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-ai">
+                        <h3>💡 AI Recommendations</h3>
+                        <div class="file-name">ai_recommendations_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            7 prioritized, actionable recommendations generated by AI analysis. Each recommendation includes category, impact level, effort estimation, and detailed implementation guidance.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Top Recommendations:</h4>
+                            <ul>
+                                <li>Clarify form functionality (High Impact, Priority 1)</li>
+                                <li>Integrate map and search results (High Impact, Priority 2)</li>
+                                <li>Add social proof and trust indicators</li>
+                                <li>Implement progressive video loading</li>
+                                <li>Enhance messaging with context</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="ai_recommendations_localhost:3000_20250923_153045.md" class="btn btn-primary">💡 View Recommendations</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-ai">
+                        <h3>📝 User Stories</h3>
+                        <div class="file-name">user_stories_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            7 intelligent user stories generated based on detected website features. Each story includes acceptance criteria and quantified business value projections.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Story Highlights:</h4>
+                            <ul>
+                                <li>Enhanced local search with map results (+40% engagement)</li>
+                                <li>Video-enhanced product listings (+60% conversion)</li>
+                                <li>In-app messaging with context (+35% transactions)</li>
+                                <li>Smart filtering with saved preferences (-25% churn)</li>
+                                <li>Location verification for trust (+30% retention)</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="user_stories_localhost:3000_20250923_153045.md" class="btn btn-primary">📝 View Stories</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Analysis Files -->
+            <div class="section">
+                <h2>🔧 Technical Analysis & Crawling Results</h2>
+                <div class="files-grid">
+                    <div class="file-card category-analysis">
+                        <h3>📊 Base Analysis</h3>
+                        <div class="file-name">analysis_localhost:3000_20250923_153045.json</div>
+                        <div class="description">
+                            Raw technical analysis from web crawling including page structure, detected elements, forms, links, and basic website metadata.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="analysis_localhost:3000_20250923_153045.json" class="btn btn-secondary">🔧 View Technical Data</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-analysis">
+                        <h3>🗺️ Feature Map</h3>
+                        <div class="file-name">basic_feature_map_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Detected website features organized by category including navigation, content, and interaction elements.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="basic_feature_map_localhost:3000_20250923_153045.md" class="btn btn-secondary">🗺️ View Feature Map</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-analysis">
+                        <h3>📄 Page Types</h3>
+                        <div class="file-name">basic_page_types_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Classification of different page types found on the website with their purposes and characteristics.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="basic_page_types_localhost:3000_20250923_153045.md" class="btn btn-secondary">📄 View Page Types</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-analysis">
+                        <h3>🔄 User Flow</h3>
+                        <div class="file-name">basic_user_flow_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Basic user flow analysis showing common paths through the website and navigation patterns.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="basic_user_flow_localhost:3000_20250923_153045.md" class="btn btn-secondary">🔄 View User Flow</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-analysis">
+                        <h3>📋 Analysis Summary</h3>
+                        <div class="file-name">summary_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Executive summary of all analysis findings with key takeaways and high-level insights.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="summary_localhost:3000_20250923_153045.md" class="btn btn-secondary">📋 View Summary</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Flow Visualizations -->
+            <div class="section">
+                <h2>📊 Enhanced Flow Visualizations</h2>
+                <div class="files-grid">
+                    <div class="file-card category-flow">
+                        <h3>📈 Conversion Funnel</h3>
+                        <div class="file-name">enhanced_conversion_funnel_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Mermaid diagram showing conversion funnel analysis with potential drop-off points and optimization opportunities.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Includes:</h4>
+                            <ul>
+                                <li>Step-by-step conversion flow visualization</li>
+                                <li>Drop-off risk assessment points</li>
+                                <li>Conversion optimization suggestions</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="enhanced_conversion_funnel_localhost:3000_20250923_153045.md" class="btn btn-primary">📈 View Funnel</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-flow">
+                        <h3>🌡️ Drop-off Heatmap</h3>
+                        <div class="file-name">enhanced_drop_off_heatmap_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Visual heatmap identifying potential user abandonment points and areas requiring UX improvements.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Identifies:</h4>
+                            <ul>
+                                <li>High-risk abandonment zones</li>
+                                <li>UX friction points</li>
+                                <li>Priority areas for improvement</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="enhanced_drop_off_heatmap_localhost:3000_20250923_153045.md" class="btn btn-primary">🌡️ View Heatmap</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-flow">
+                        <h3>😊 Emotional Flow</h3>
+                        <div class="file-name">enhanced_emotional_flow_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Analysis of user emotional states throughout their journey, identifying moments of delight, frustration, and confusion.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Maps:</h4>
+                            <ul>
+                                <li>Emotional highs and lows in user journey</li>
+                                <li>Frustration and delight trigger points</li>
+                                <li>Emotional optimization opportunities</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="enhanced_emotional_flow_localhost:3000_20250923_153045.md" class="btn btn-primary">😊 View Emotional Flow</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-flow">
+                        <h3>🎯 Goal Achievement</h3>
+                        <div class="file-name">enhanced_goal_achievement_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Analysis of how well the website helps users achieve their primary goals with success rate projections.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="enhanced_goal_achievement_localhost:3000_20250923_153045.md" class="btn btn-primary">🎯 View Goal Analysis</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-flow">
+                        <h3>👥 Persona Journeys</h3>
+                        <div class="file-name">enhanced_persona_journeys_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Individual journey maps for 5 different user personas: New Customer, Returning Customer, Guest, Admin, and Mobile User.
+                        </div>
+                        <div class="key-insights">
+                            <h4>5 Persona Types:</h4>
+                            <ul>
+                                <li>New Customer journey and onboarding</li>
+                                <li>Returning Customer optimization paths</li>
+                                <li>Guest user conversion opportunities</li>
+                                <li>Admin workflow efficiency analysis</li>
+                                <li>Mobile-specific user experience</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="enhanced_persona_journeys_localhost:3000_20250923_153045.md" class="btn btn-primary">👥 View Persona Journeys</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-flow">
+                        <h3>📊 Satisfaction Analysis</h3>
+                        <div class="file-name">enhanced_satisfaction_analysis_localhost:3000_20250923_153045.md</div>
+                        <div class="description">
+                            Comprehensive satisfaction scoring across different user touchpoints and interaction moments.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="enhanced_satisfaction_analysis_localhost:3000_20250923_153045.md" class="btn btn-primary">📊 View Satisfaction Analysis</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inefficiency Dashboards -->
+            <div class="section">
+                <h2>⚡ Inefficiency Detection & Dashboards</h2>
+                <div class="files-grid">
+                    <div class="file-card category-dashboard">
+                        <h3>🔍 Interactive Inefficiency Dashboard</h3>
+                        <div class="file-name">inefficiency_dashboard_20250923_153221.html</div>
+                        <div class="description">
+                            <strong>🎯 KEY INSIGHT TOOL!</strong> Interactive HTML dashboard that visualizes website inefficiencies with actionable improvement suggestions. Perfect for stakeholder presentations.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Dashboard Features:</h4>
+                            <ul>
+                                <li>Visual inefficiency scoring and benchmarks</li>
+                                <li>Interactive charts and progress bars</li>
+                                <li>Prioritized improvement recommendations</li>
+                                <li>Before/after impact projections</li>
+                                <li>Executive summary for stakeholders</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="inefficiency_dashboard_20250923_153221.html" class="btn btn-primary">⚡ Open Inefficiency Dashboard</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-dashboard">
+                        <h3>📊 Inefficiency Data</h3>
+                        <div class="file-name">inefficiency_dashboard_20250923_153221.json</div>
+                        <div class="description">
+                            Raw data powering the inefficiency dashboard including scoring metrics, benchmarks, and improvement calculations.
+                        </div>
+                        <div class="action-buttons">
+                            <a href="inefficiency_dashboard_20250923_153221.json" class="btn btn-secondary">📊 View Data</a>
+                        </div>
+                    </div>
+
+                    <div class="file-card category-dashboard">
+                        <h3>📈 User Journey Report</h3>
+                        <div class="file-name">user_journey_report_20250923_153221.md</div>
+                        <div class="description">
+                            Comprehensive report on multi-persona user journey mapping results including emotional states and drop-off analysis.
+                        </div>
+                        <div class="key-insights">
+                            <h4>Journey Insights:</h4>
+                            <ul>
+                                <li>5 different user persona journey maps</li>
+                                <li>Emotional state tracking throughout journeys</li>
+                                <li>Success/failure rate analysis per persona</li>
+                                <li>Journey optimization recommendations</li>
+                            </ul>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="user_journey_report_20250923_153221.md" class="btn btn-primary">📈 View Journey Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations Section -->
+            <div class="workflow-section">
+                <h3>🚀 Recommended Analysis Workflow</h3>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <p style="color: #666; font-size: 1.1rem;">For the best experience, follow this recommended order:</p>
+                </div>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h4>📊 Start with Interactive Dashboard</h4>
+                        <p>Get the big picture with visual AI analysis</p>
+                        <a href="interactive_analysis_dashboard.html" class="btn btn-primary" style="margin-top: 10px;">Open Dashboard</a>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h4>⚡ Check Inefficiency Dashboard</h4>
+                        <p>Identify key problems and improvement areas</p>
+                        <a href="inefficiency_dashboard_20250923_153221.html" class="btn btn-primary" style="margin-top: 10px;">View Inefficiencies</a>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h4>💡 Review Recommendations</h4>
+                        <p>Get actionable next steps for improvement</p>
+                        <a href="ai_recommendations_localhost:3000_20250923_153045.md" class="btn btn-primary" style="margin-top: 10px;">See Recommendations</a>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <h4>📝 Explore User Stories</h4>
+                        <p>Understand feature requirements and business value</p>
+                        <a href="user_stories_localhost:3000_20250923_153045.md" class="btn btn-primary" style="margin-top: 10px;">Read Stories</a>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <h4>👥 Dive into Persona Journeys</h4>
+                        <p>Understand different user experiences</p>
+                        <a href="enhanced_persona_journeys_localhost:3000_20250923_153045.md" class="btn btn-primary" style="margin-top: 10px;">View Journeys</a>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">6</div>
+                        <h4>🔧 Technical Deep Dive</h4>
+                        <p>Explore raw data and technical findings</p>
+                        <a href="analysis_localhost:3000_20250923_153045.json" class="btn btn-secondary" style="margin-top: 10px;">View Technical Data</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all file cards
+        document.querySelectorAll('.file-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
