@@ -13,6 +13,10 @@ from datetime import datetime
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from fixed_product_analyzer_browser import FixedProductAnalyzerBrowser
+from user_journey_mapper import AdvancedUserJourneyMapper
+from enhanced_flow_visualizer import EnhancedFlowVisualizer
+from inefficiency_dashboard import UserFlowInefficiencyDashboard
+from ai_content_analyzer import AIContentAnalyzer
 
 
 class FixedProductAnalyzerTool:
@@ -20,6 +24,10 @@ class FixedProductAnalyzerTool:
     
     def __init__(self):
         self.browser = None
+        self.journey_mapper = None
+        self.flow_visualizer = None
+        self.inefficiency_dashboard = None
+        self.ai_analyzer = None
         
     async def analyze_website(self, url: str, max_depth: int = 5, output_dir: str = "analysis_output", headless: bool = True):
         """Analyze a website and generate product documentation."""
@@ -39,6 +47,14 @@ class FixedProductAnalyzerTool:
             self.browser = FixedProductAnalyzerBrowser(headless=headless, slow_mo=1000)
             await self.browser.start()
             print("✅ Browser started successfully")
+
+            # Initialize advanced analysis components
+            self.journey_mapper = AdvancedUserJourneyMapper(self.browser.browser, output_dir)
+            self.flow_visualizer = EnhancedFlowVisualizer()
+            self.inefficiency_dashboard = UserFlowInefficiencyDashboard(output_dir)
+            self.ai_analyzer = AIContentAnalyzer()
+            print("✅ Advanced analysis components initialized")
+            print("🧠 AI-powered content analyzer initialized")
             
             # Analyze website
             print("\n🤖 Starting comprehensive analysis...")
@@ -48,11 +64,53 @@ class FixedProductAnalyzerTool:
             )
             
             if results['success']:
-                print("✅ Analysis completed successfully!")
-                
+                print("✅ Basic analysis completed successfully!")
+
                 # Generate timestamp for file naming
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 domain = url.replace("https://", "").replace("http://", "").split("/")[0]
+
+                # Perform AI-powered intelligent analysis
+                print("\n🧠 Starting AI-powered intelligent analysis...")
+                ai_analysis = {}
+                try:
+                    if 'analysis_results' in results and results['analysis_results']:
+                        ai_analysis = await self.ai_analyzer.analyze_website_intelligence(url, results['analysis_results'])
+                        print("✅ AI analysis completed successfully!")
+
+                        # Replace generic user stories with intelligent ones
+                        if ai_analysis.get('intelligent_user_stories'):
+                            results['user_stories'] = ai_analysis['intelligent_user_stories']
+                            print(f"🎯 Generated {len(ai_analysis['intelligent_user_stories'])} intelligent user stories!")
+                    else:
+                        print("⚠️ No basic analysis results available for AI enhancement")
+                        ai_analysis = {"ai_powered": False, "analysis_quality": "basic"}
+                except Exception as e:
+                    print(f"⚠️ AI analysis encountered issues: {e}")
+                    ai_analysis = {"ai_powered": False, "error": str(e)}
+
+                # Perform advanced user journey mapping (if enabled)
+                journey_results = {"journeys": []}  # Default empty results
+                enhanced_diagrams = {}
+                inefficiency_analysis = {"summary": {"message": "Journey mapping disabled"}}
+
+                try:
+                    print("\n🗺️ Starting Advanced User Journey Mapping...")
+                    journey_results = await self.journey_mapper.map_user_journeys(url, min(max_depth, 3))  # Limit depth to avoid issues
+                    print("✅ User journey mapping completed!")
+
+                    # Generate enhanced visualizations
+                    print("\n📊 Creating Enhanced Flow Visualizations...")
+                    enhanced_diagrams = self.flow_visualizer.generate_comprehensive_journey_dashboard(journey_results)
+                    print("✅ Enhanced visualizations generated!")
+
+                    # Analyze inefficiencies
+                    print("\n🔍 Analyzing User Flow Inefficiencies...")
+                    inefficiency_analysis = self.inefficiency_dashboard.analyze_flow_inefficiencies(journey_results)
+                    print("✅ Inefficiency analysis completed!")
+                except Exception as e:
+                    print(f"⚠️ Enhanced analysis encountered issues: {e}")
+                    print("📋 Continuing with basic analysis...")
                 
                 # Save comprehensive results (convert sets to lists for JSON serialization)
                 def convert_sets_to_lists(obj):
@@ -64,12 +122,23 @@ class FixedProductAnalyzerTool:
                         return [convert_sets_to_lists(item) for item in obj]
                     else:
                         return obj
-                
-                serializable_results = convert_sets_to_lists(results)
+
+                # Merge AI analysis with basic results
+                enhanced_results = convert_sets_to_lists(results)
+                if ai_analysis:
+                    enhanced_results['ai_analysis'] = ai_analysis
+
                 results_file = output_path / f"analysis_{domain}_{timestamp}.json"
                 with open(results_file, 'w') as f:
-                    json.dump(serializable_results, f, indent=2)
-                print(f"💾 Analysis results saved to: {results_file}")
+                    json.dump(enhanced_results, f, indent=2)
+                print(f"💾 Enhanced analysis results saved to: {results_file}")
+
+                # Save AI analysis separately for easier access
+                if ai_analysis and ai_analysis.get('ai_powered'):
+                    ai_file = output_path / f"ai_analysis_{domain}_{timestamp}.json"
+                    with open(ai_file, 'w') as f:
+                        json.dump(ai_analysis, f, indent=2)
+                    print(f"🧠 AI analysis saved to: {ai_file}")
                 
                 # Display and save user stories
                 user_stories = results.get('user_stories', [])
@@ -105,41 +174,83 @@ class FixedProductAnalyzerTool:
                 else:
                     print("\n📝 No user stories generated (website may be too simple)")
                 
-                # Display and save Mermaid diagrams
+                # Save enhanced diagrams (if generated)
+                if enhanced_diagrams:
+                    print(f"\n📊 Saving Enhanced Visualizations...")
+                    for diagram_type, diagram_content in enhanced_diagrams.items():
+                        diagram_file = output_path / f"enhanced_{diagram_type}_{domain}_{timestamp}.md"
+                        with open(diagram_file, 'w') as f:
+                            f.write(f"# {diagram_type.replace('_', ' ').title()} for {url}\n\n")
+                            f.write(f"*Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*\n\n")
+                            f.write("```mermaid\n")
+                            f.write(diagram_content)
+                            f.write("\n```\n")
+                        print(f"📊 Enhanced {diagram_type} saved to: {diagram_file}")
+
+                # Save user journey report (if generated)
+                if journey_results and journey_results.get("journeys"):
+                    try:
+                        journey_report_file = await self.journey_mapper.generate_journey_report(journey_results)
+                        print(f"🗺️ Journey report saved to: {journey_report_file}")
+                    except Exception as e:
+                        print(f"⚠️ Could not save journey report: {e}")
+
+                # Save inefficiency dashboard (if analysis was successful)
+                if inefficiency_analysis and "summary" in inefficiency_analysis:
+                    try:
+                        dashboard_json, dashboard_html = self.inefficiency_dashboard.save_dashboard(inefficiency_analysis)
+                        print(f"🔍 Inefficiency dashboard saved to: {dashboard_html}")
+                        print(f"📋 Dashboard data saved to: {dashboard_json}")
+                    except Exception as e:
+                        print(f"⚠️ Could not save inefficiency dashboard: {e}")
+
+                # Display and save original Mermaid diagrams
                 mermaid_diagrams = results.get('mermaid_diagrams', {})
                 if mermaid_diagrams:
-                    print(f"\n📊 Generated {len(mermaid_diagrams)} Mermaid Diagrams:")
+                    print(f"\n📊 Generated {len(mermaid_diagrams)} Basic Mermaid Diagrams:")
                     print("=" * 50)
-                    
+
                     for diagram_type, diagram_content in mermaid_diagrams.items():
-                        print(f"\n{diagram_type.upper().replace('_', ' ')} DIAGRAM:")
-                        print("-" * 30)
-                        print(diagram_content)
-                        print()
-                        
                         # Save individual diagram files as .md with Mermaid syntax
-                        diagram_file = output_path / f"diagram_{diagram_type}_{domain}_{timestamp}.md"
+                        diagram_file = output_path / f"basic_{diagram_type}_{domain}_{timestamp}.md"
                         with open(diagram_file, 'w') as f:
                             f.write(f"# {diagram_type.replace('_', ' ').title()} Diagram for {url}\n\n")
                             f.write(f"*Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*\n\n")
                             f.write("```mermaid\n")
                             f.write(diagram_content)
                             f.write("\n```\n")
-                        print(f"📊 {diagram_type} diagram saved to: {diagram_file}")
-                    
-                    # Create combined diagram file as .md
-                    combined_file = output_path / f"all_diagrams_{domain}_{timestamp}.md"
-                    with open(combined_file, 'w') as f:
-                        f.write(f"# All Diagrams for {url}\n\n")
-                        f.write(f"*Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*\n\n")
-                        for diagram_type, diagram_content in mermaid_diagrams.items():
-                            f.write(f"## {diagram_type.replace('_', ' ').title()} Diagram\n\n")
-                            f.write("```mermaid\n")
-                            f.write(diagram_content)
-                            f.write("\n```\n\n")
-                    print(f"📊 Combined diagrams saved to: {combined_file}")
+                        print(f"📊 Basic {diagram_type} diagram saved to: {diagram_file}")
                 else:
-                    print("\n📊 No Mermaid diagrams generated")
+                    print("\n📊 No basic Mermaid diagrams generated")
+
+                # Display AI recommendations if available
+                if ai_analysis and ai_analysis.get('ai_recommendations'):
+                    recommendations = ai_analysis['ai_recommendations']
+                    print(f"\n🎯 Generated {len(recommendations)} AI Recommendations:")
+                    print("=" * 50)
+
+                    recommendations_file = output_path / f"ai_recommendations_{domain}_{timestamp}.md"
+                    with open(recommendations_file, 'w') as f:
+                        f.write(f"# AI Recommendations for {url}\n\n")
+                        f.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+
+                        for i, rec in enumerate(recommendations, 1):
+                            print(f"\n{i}. {rec.get('title', 'Untitled')}")
+                            print(f"   Category: {rec.get('category', 'General')}")
+                            print(f"   Impact: {rec.get('impact', 'medium')} | Priority: {rec.get('priority', '3')}")
+                            print(f"   Description: {rec.get('description', '')[:100]}...")
+
+                            # Write to file
+                            f.write(f"## {i}. {rec.get('title', 'Untitled')}\n\n")
+                            f.write(f"**Category:** {rec.get('category', 'General')}\n")
+                            f.write(f"**Impact:** {rec.get('impact', 'medium')} | **Priority:** {rec.get('priority', '3')}\n")
+                            f.write(f"**Effort:** {rec.get('effort', 'medium')}\n\n")
+                            f.write(f"**Description:**\n{rec.get('description', '')}\n\n")
+                            f.write("---\n\n")
+
+                    print(f"📋 AI recommendations saved to: {recommendations_file}")
+                else:
+                    print("\n🎯 No AI recommendations generated")
                 
                 # Generate summary report
                 summary_file = output_path / f"summary_{domain}_{timestamp}.md"
@@ -152,7 +263,13 @@ class FixedProductAnalyzerTool:
                     f.write("## Analysis Results\n\n")
                     f.write(f"- **User Stories Generated:** {len(user_stories)}\n")
                     f.write(f"- **Mermaid Diagrams Generated:** {len(mermaid_diagrams)}\n")
-                    f.write(f"- **Pages Analyzed:** {len(results.get('analysis_results', []))}\n\n")
+                    f.write(f"- **Pages Analyzed:** {len(results.get('analysis_results', []))}\n")
+                    f.write(f"- **AI Analysis:** {'Enabled' if ai_analysis.get('ai_powered') else 'Fallback Mode'}\n")
+                    if ai_analysis.get('ai_recommendations'):
+                        f.write(f"- **AI Recommendations:** {len(ai_analysis['ai_recommendations'])}\n")
+                    if ai_analysis.get('business_model'):
+                        f.write(f"- **Business Model Detected:** {ai_analysis['business_model'].get('primary_model', 'Unknown')}\n")
+                    f.write("\n")
                     
                     if user_stories:
                         f.write("## User Stories Overview\n\n")
@@ -219,7 +336,13 @@ Examples:
                        help='Output directory for generated files (default: analysis_output)')
     parser.add_argument('--no-headless', action='store_true',
                        help='Run browser in visible mode (default: headless)')
-    parser.add_argument('--version', action='version', version='Fixed Product Analyzer Tool 1.0.0')
+    parser.add_argument('--enable-journey-mapping', action='store_true', default=True,
+                       help='Enable advanced user journey mapping (default: enabled)')
+    parser.add_argument('--disable-screenshots', action='store_true',
+                       help='Disable screenshot capture during analysis')
+    parser.add_argument('--personas', nargs='*', default=['all'],
+                       help='Specify personas to analyze (customer, admin, guest, mobile, returning) or "all"')
+    parser.add_argument('--version', action='version', version='Fixed Product Analyzer Tool 2.0.0')
     
     args = parser.parse_args()
     

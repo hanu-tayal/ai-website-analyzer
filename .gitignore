@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+ai_venv/
+test_ai_output/
+
+# Analysis output directories
+analysis_output/
+venmo_ai_analysis/
+venmo_improved_analysis/
+claude_enhanced_demo/
+ai_enhanced_test/
+test_fixes_demo/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Screenshots and temporary files
+*.png
+*.jpg
+*.jpeg
+screenshots/
+
+# Node modules (for any JS dependencies)
+node_modules/
+venmo-clone/
+
+# Comparison scripts
+compare_venmo_analysis.sh
+
+# Test files
+test_*.py

@@ -1,51 +1,62 @@
-# Playwright AI Browser
+# 🚀 AI Website Analysis Tool
 
-An intelligent web browsing tool that combines Playwright automation with Claude Code SDK for AI-powered website analysis and navigation.
+An advanced AI-powered website analysis tool that provides comprehensive insights into user experience, website functionality, and actionable recommendations using Claude AI.
 
-## Features
+## ✨ Features
 
-🤖 **AI-Powered Analysis**: Uses Claude Code SDK to understand website structure and purpose  
-🌐 **Intelligent Navigation**: Automatically follows natural user journeys  
-👤 **Account Creation**: Automatically creates user accounts when needed  
-🔍 **Page Analysis**: AI analyzes each page to determine the next best action  
-🛡️ **Error Handling**: Robust retry mechanisms and error recovery  
-📝 **Session Logging**: Detailed logs of all browsing activities  
+### 🧠 **AI-Powered Analysis**
+- **Claude Code SDK Integration** - Intelligent content analysis using Anthropic's Claude
+- **Website Purpose Detection** - Automatically identifies website type, industry, and user segments
+- **User Insights Generation** - Analyzes user goals, pain points, and behavioral patterns
+- **Smart Recommendations** - Generates prioritized, actionable improvement suggestions
+- **Intelligent User Stories** - Creates context-aware user stories based on actual website content
+
+### 🗺️ **Advanced User Journey Mapping**
+- **Multi-Persona Analysis** - Tests 5 different user types (New Customer, Returning Customer, Guest, Admin, Mobile)
+- **Emotional State Tracking** - Maps user emotions throughout their journey
+- **Screenshot Documentation** - Captures visual evidence at each journey step
+- **Drop-off Risk Assessment** - Identifies potential user abandonment points
+- **Responsive Testing** - Simulates both mobile and desktop experiences
+
+### 📊 **Enhanced Visualizations**
+- **Mermaid Diagram Generation** - User flows, conversion funnels, feature maps
+- **Interactive HTML Dashboards** - Visual inefficiency reports and analytics
+- **Persona Journey Diagrams** - Individual user journey visualizations
+- **Drop-off Heatmaps** - Visual identification of UX problems
+- **Satisfaction Analysis** - Emotional journey mapping
+
+### 🔧 **Browser Automation**
+- **Playwright Integration** - Intelligent web crawling with form filling and interaction
+- **Smart Navigation** - AI-guided page exploration and action selection
+- **Multi-page Analysis** - Configurable depth crawling (1-10+ pages)
+- **Headless/Visual Modes** - Can run with or without browser UI  
 
 ## Installation
 
 ### Prerequisites
-
-- Python 3.10+
+- Python 3.8+
 - Node.js (for Playwright)
-- Claude API key
+- Claude Code SDK access
 
 ### Setup
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/ai-website-analyzer.git
+cd ai-website-analyzer
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd playwright-ai-browser
-   ```
+# Create and activate virtual environment
+python -m venv ai_venv
+source ai_venv/bin/activate  # On Windows: ai_venv\Scripts\activate
 
-2. **Install Python dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Install Python dependencies
+pip install -r requirements.txt
 
-3. **Install Playwright browsers:**
-   ```bash
-   playwright install
-   ```
+# Install Playwright browsers
+playwright install
 
-4. **Install Claude Code CLI:**
-   ```bash
-   npm install -g @anthropic-ai/claude-code
-   ```
-
-5. **Set up your Claude API key:**
-   ```bash
-   export CLAUDE_API_KEY="your-claude-api-key-here"
-   ```
+# Install Claude Code SDK
+pip install claude-code-sdk
+```
 
 ## Quick Start
 

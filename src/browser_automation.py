@@ -246,6 +246,16 @@ class BrowserAutomation:
             print(f"Error clicking element {selector}: {e}")
             return False
     
+    async def get_page_title(self) -> str:
+        """Get the title of the current page."""
+        try:
+            if not self.page:
+                return ''
+            return await self.page.title()
+        except Exception as e:
+            print(f"Error getting page title: {e}")
+            return ''
+
     async def fill_form(self, form_data: Dict[str, str]) -> bool:
         """Fill out a form with the provided data.
         

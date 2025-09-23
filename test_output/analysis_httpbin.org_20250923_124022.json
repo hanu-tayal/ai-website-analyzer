@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "analysis_results": [
+    {
+      "step": 1,
+      "url": "https://httpbin.org/",
+      "page_analysis": {
+        "url": "https://httpbin.org/",
+        "page_type": "general",
+        "features": [],
+        "forms": [],
+        "navigation": [],
+        "content_sections": [],
+        "user_interactions": [],
+        "business_goals": []
+      },
+      "discovered_actions": [],
+      "chosen_action": null,
+      "action_result": {
+        "success": false,
+        "error": "No action to execute",
+        "continue": false
+      }
+    }
+  ],
+  "user_stories": [],
+  "mermaid_diagrams": {
+    "user_flow": "graph TD\n    A[User visits website] --> B{Is user logged in?}\n    B -->|No| C[Registration/Login page]\n    B -->|Yes| D[User Dashboard]\n    C --> E[Authentication]\n    E --> D\n",
+    "page_types": "graph LR\n    P1[General]\n",
+    "feature_map": "mindmap\n  root((Website Features))\n    General Website\n      Navigation\n      Content\n"
+  },
+  "session_log": [
+    {
+      "timestamp": 1758656420.430472,
+      "action": "browser_started",
+      "details": "Fixed product analyzer browser started"
+    }
+  ],
+  "browsing_context": {
+    "visited_urls": [],
+    "discovered_actions": [],
+    "session_start": 1758656418.634836,
+    "tried_actions": [],
+    "action_history": [],
+    "consecutive_same_actions": 0,
+    "user_flows": [],
+    "page_types": {
+      "https://httpbin.org/": "general"
+    },
+    "interactions": [],
+    "forms_discovered": [],
+    "features_discovered": []
+  }
+}
