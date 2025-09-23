@@ -32,10 +32,10 @@ test_ai_output/
 # Analysis output directories
 analysis_output/
 venmo_ai_analysis/
-venmo_improved_analysis/
 claude_enhanced_demo/
 ai_enhanced_test/
 test_fixes_demo/
+# Note: venmo_improved_analysis/ is included to demonstrate analysis improvements
 
 # IDE
 .vscode/

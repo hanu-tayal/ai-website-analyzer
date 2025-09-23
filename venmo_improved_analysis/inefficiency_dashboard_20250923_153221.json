@@ -1,0 +1,368 @@
+{
+  "summary": {
+    "total_issues": 3,
+    "by_severity": {
+      "medium": 3
+    },
+    "by_category": {
+      "ux": 3
+    },
+    "top_issues": [
+      {
+        "title": "User Emotional Distress",
+        "severity": "medium",
+        "impact_score": 7.0,
+        "affected_personas": [
+          "New Customer"
+        ]
+      },
+      {
+        "title": "User Emotional Distress",
+        "severity": "medium",
+        "impact_score": 7.0,
+        "affected_personas": [
+          "Returning Customer"
+        ]
+      },
+      {
+        "title": "User Emotional Distress",
+        "severity": "medium",
+        "impact_score": 7.0,
+        "affected_personas": [
+          "Guest User"
+        ]
+      }
+    ],
+    "affected_personas": [
+      "Guest User",
+      "New Customer",
+      "Returning Customer"
+    ]
+  },
+  "flow_metrics": {
+    "New Customer": {
+      "total_steps": 1,
+      "successful_steps": 1,
+      "failed_steps": 0,
+      "average_time_per_step": 2.0,
+      "total_time": 2.0,
+      "bounce_rate": 0.8,
+      "conversion_rate": 0.0,
+      "user_effort_score": 0,
+      "cognitive_load_score": 3.0
+    },
+    "Returning Customer": {
+      "total_steps": 1,
+      "successful_steps": 1,
+      "failed_steps": 0,
+      "average_time_per_step": 2.0,
+      "total_time": 2.0,
+      "bounce_rate": 0.8,
+      "conversion_rate": 0.0,
+      "user_effort_score": 0,
+      "cognitive_load_score": 3.0
+    },
+    "Guest User": {
+      "total_steps": 1,
+      "successful_steps": 1,
+      "failed_steps": 0,
+      "average_time_per_step": 2.0,
+      "total_time": 2.0,
+      "bounce_rate": 0.8,
+      "conversion_rate": 0.0,
+      "user_effort_score": 0,
+      "cognitive_load_score": 3.0
+    },
+    "Administrator": {
+      "total_steps": 1,
+      "successful_steps": 1,
+      "failed_steps": 0,
+      "average_time_per_step": 2.0,
+      "total_time": 2.0,
+      "bounce_rate": 0.8,
+      "conversion_rate": 0.0,
+      "user_effort_score": 0,
+      "cognitive_load_score": 1.0
+    },
+    "Mobile User": {
+      "total_steps": 1,
+      "successful_steps": 1,
+      "failed_steps": 0,
+      "average_time_per_step": 2.0,
+      "total_time": 2.0,
+      "bounce_rate": 0.8,
+      "conversion_rate": 0.0,
+      "user_effort_score": 0,
+      "cognitive_load_score": 1.0
+    }
+  },
+  "inefficiencies": [
+    {
+      "issue_id": "INF_001",
+      "severity": "medium",
+      "category": "ux",
+      "title": "User Emotional Distress",
+      "description": "New Customer experiences negative emotions: frustrated, confused",
+      "affected_personas": [
+        "New Customer"
+      ],
+      "step_numbers": [
+        1,
+        1
+      ],
+      "frequency": 2,
+      "impact_score": 7.0,
+      "root_cause": "Poor UX design, unclear instructions, or system limitations",
+      "suggested_fixes": [
+        "Improve user interface clarity",
+        "Add better onboarding and help",
+        "Provide clear feedback messages",
+        "Simplify complex processes",
+        "Add progress indicators"
+      ],
+      "business_impact": "Negative brand perception, reduced loyalty",
+      "user_quotes": [
+        "This is so frustrating!",
+        "I don't understand what's happening",
+        "Why is this so difficult?"
+      ]
+    },
+    {
+      "issue_id": "INF_002",
+      "severity": "medium",
+      "category": "ux",
+      "title": "User Emotional Distress",
+      "description": "Returning Customer experiences negative emotions: frustrated, confused",
+      "affected_personas": [
+        "Returning Customer"
+      ],
+      "step_numbers": [
+        1,
+        1
+      ],
+      "frequency": 2,
+      "impact_score": 7.0,
+      "root_cause": "Poor UX design, unclear instructions, or system limitations",
+      "suggested_fixes": [
+        "Improve user interface clarity",
+        "Add better onboarding and help",
+        "Provide clear feedback messages",
+        "Simplify complex processes",
+        "Add progress indicators"
+      ],
+      "business_impact": "Negative brand perception, reduced loyalty",
+      "user_quotes": [
+        "This is so frustrating!",
+        "I don't understand what's happening",
+        "Why is this so difficult?"
+      ]
+    },
+    {
+      "issue_id": "INF_003",
+      "severity": "medium",
+      "category": "ux",
+      "title": "User Emotional Distress",
+      "description": "Guest User experiences negative emotions: frustrated, confused",
+      "affected_personas": [
+        "Guest User"
+      ],
+      "step_numbers": [
+        1,
+        1
+      ],
+      "frequency": 2,
+      "impact_score": 7.0,
+      "root_cause": "Poor UX design, unclear instructions, or system limitations",
+      "suggested_fixes": [
+        "Improve user interface clarity",
+        "Add better onboarding and help",
+        "Provide clear feedback messages",
+        "Simplify complex processes",
+        "Add progress indicators"
+      ],
+      "business_impact": "Negative brand perception, reduced loyalty",
+      "user_quotes": [
+        "This is so frustrating!",
+        "I don't understand what's happening",
+        "Why is this so difficult?"
+      ]
+    }
+  ],
+  "cross_persona_issues": [
+    {
+      "pattern": "ux_user_emotional_distress",
+      "title": "User Emotional Distress",
+      "affected_personas": [
+        "Guest User",
+        "New Customer",
+        "Returning Customer"
+      ],
+      "persona_count": 3,
+      "total_impact": 21.0,
+      "average_impact": 7.0,
+      "affected_steps": [
+        1
+      ],
+      "frequency": 6,
+      "severity": "medium",
+      "description": "This issue affects 3 different persona types"
+    }
+  ],
+  "priority_matrix": {
+    "critical_urgent": [],
+    "critical_important": [
+      {
+        "issue_id": "INF_001",
+        "severity": "medium",
+        "category": "ux",
+        "title": "User Emotional Distress",
+        "description": "New Customer experiences negative emotions: frustrated, confused",
+        "affected_personas": [
+          "New Customer"
+        ],
+        "step_numbers": [
+          1,
+          1
+        ],
+        "frequency": 2,
+        "impact_score": 7.0,
+        "root_cause": "Poor UX design, unclear instructions, or system limitations",
+        "suggested_fixes": [
+          "Improve user interface clarity",
+          "Add better onboarding and help",
+          "Provide clear feedback messages",
+          "Simplify complex processes",
+          "Add progress indicators"
+        ],
+        "business_impact": "Negative brand perception, reduced loyalty",
+        "user_quotes": [
+          "This is so frustrating!",
+          "I don't understand what's happening",
+          "Why is this so difficult?"
+        ]
+      },
+      {
+        "issue_id": "INF_002",
+        "severity": "medium",
+        "category": "ux",
+        "title": "User Emotional Distress",
+        "description": "Returning Customer experiences negative emotions: frustrated, confused",
+        "affected_personas": [
+          "Returning Customer"
+        ],
+        "step_numbers": [
+          1,
+          1
+        ],
+        "frequency": 2,
+        "impact_score": 7.0,
+        "root_cause": "Poor UX design, unclear instructions, or system limitations",
+        "suggested_fixes": [
+          "Improve user interface clarity",
+          "Add better onboarding and help",
+          "Provide clear feedback messages",
+          "Simplify complex processes",
+          "Add progress indicators"
+        ],
+        "business_impact": "Negative brand perception, reduced loyalty",
+        "user_quotes": [
+          "This is so frustrating!",
+          "I don't understand what's happening",
+          "Why is this so difficult?"
+        ]
+      },
+      {
+        "issue_id": "INF_003",
+        "severity": "medium",
+        "category": "ux",
+        "title": "User Emotional Distress",
+        "description": "Guest User experiences negative emotions: frustrated, confused",
+        "affected_personas": [
+          "Guest User"
+        ],
+        "step_numbers": [
+          1,
+          1
+        ],
+        "frequency": 2,
+        "impact_score": 7.0,
+        "root_cause": "Poor UX design, unclear instructions, or system limitations",
+        "suggested_fixes": [
+          "Improve user interface clarity",
+          "Add better onboarding and help",
+          "Provide clear feedback messages",
+          "Simplify complex processes",
+          "Add progress indicators"
+        ],
+        "business_impact": "Negative brand perception, reduced loyalty",
+        "user_quotes": [
+          "This is so frustrating!",
+          "I don't understand what's happening",
+          "Why is this so difficult?"
+        ]
+      }
+    ],
+    "optimize": [],
+    "monitor": []
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "category": "User Experience",
+      "title": "Improve User Experience Design",
+      "description": "UX issues causing emotional distress and drop-offs",
+      "actions": [
+        "Redesign problematic interfaces",
+        "Add progress indicators and feedback",
+        "Implement user testing sessions",
+        "Create consistent design patterns"
+      ],
+      "expected_impact": "30-50% improvement in user satisfaction",
+      "effort": "high"
+    }
+  ],
+  "efficiency_score": {
+    "score": 76.7,
+    "grade": "B",
+    "components": {
+      "success_rate": 100.0,
+      "time_efficiency": 100,
+      "conversion_rate": 0.0,
+      "user_effort": 100.0,
+      "cognitive_load": 78.0
+    },
+    "description": "Good user flow with some areas for improvement"
+  },
+  "benchmark_comparison": {
+    "average_steps": {
+      "current": 1,
+      "benchmark": 5,
+      "performance": "excellent",
+      "gap": -4
+    },
+    "success_rate": {
+      "current": 1.0,
+      "benchmark": 0.75,
+      "performance": "excellent",
+      "gap": 0.25
+    },
+    "time_per_step": {
+      "current": 2.0,
+      "benchmark": 5.0,
+      "performance": "excellent",
+      "gap": -3.0
+    },
+    "conversion_rate": {
+      "current": 0.0,
+      "benchmark": 0.15,
+      "performance": "below_benchmark",
+      "gap": -0.15
+    },
+    "bounce_rate": {
+      "current": 0.8,
+      "benchmark": 0.4,
+      "performance": "below_benchmark",
+      "gap": 0.4
+    }
+  }
+}
